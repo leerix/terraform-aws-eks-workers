@@ -44,19 +44,19 @@ resource "aws_iam_role" "default" {
 
 resource "aws_iam_role_policy_attachment" "amazon_eks_worker_node_policy" {
   count      = var.enabled && var.use_existing_aws_iam_instance_profile == false ? 1 : 0
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
+  policy_arn = "arn:aws-cn:iam::aws:policy/AmazonEKSWorkerNodePolicy"
   role       = join("", aws_iam_role.default.*.name)
 }
 
 resource "aws_iam_role_policy_attachment" "amazon_eks_cni_policy" {
   count      = var.enabled && var.use_existing_aws_iam_instance_profile == false ? 1 : 0
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
+  policy_arn = "arn:aws-cn:iam::aws:policy/AmazonEKS_CNI_Policy"
   role       = join("", aws_iam_role.default.*.name)
 }
 
 resource "aws_iam_role_policy_attachment" "amazon_ec2_container_registry_read_only" {
   count      = var.enabled && var.use_existing_aws_iam_instance_profile == false ? 1 : 0
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+  policy_arn = "arn:aws-cn:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
   role       = join("", aws_iam_role.default.*.name)
 }
 
