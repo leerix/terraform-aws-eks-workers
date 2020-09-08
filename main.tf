@@ -146,7 +146,7 @@ data "aws_ami" "eks_worker" {
     values = [var.eks_worker_ami_name_filter]
   }
 
-  owners = ["602401143452"] # Amazon
+  owners = ["918309763551"] # Amazon China
 }
 
 data "template_file" "userdata" {
