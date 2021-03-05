@@ -72,6 +72,25 @@ The module provisions the following resources:
 - AutoScaling Policies and CloudWatch Metric Alarms to monitor CPU utilization on the EC2 instances and scale the number of instance in the AutoScaling Group up or down.
 If you don't want to use the provided functionality, or want to provide your own policies, disable it by setting the variable `autoscaling_policies_enabled` to `"false"`.
 
+## Security & Compliance [<img src="https://cloudposse.com/wp-content/uploads/2020/11/bridgecrew.svg" width="250" align="right" />](https://bridgecrew.io/)
+
+Security scanning is graciously provided by Bridgecrew. Bridgecrew is the leading fully hosted, cloud-native solution providing continuous Terraform security and compliance.
+
+| Benchmark | Description |
+|--------|---------------|
+| [![Infrastructure Security](https://www.bridgecrew.cloud/badges/github/cloudposse/terraform-aws-eks-workers/general)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=cloudposse%2Fterraform-aws-eks-workers&benchmark=INFRASTRUCTURE+SECURITY) | Infrastructure Security Compliance |
+| [![CIS KUBERNETES](https://www.bridgecrew.cloud/badges/github/cloudposse/terraform-aws-eks-workers/cis_kubernetes)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=cloudposse%2Fterraform-aws-eks-workers&benchmark=CIS+KUBERNETES+V1.5) | Center for Internet Security, KUBERNETES Compliance |
+| [![CIS AWS](https://www.bridgecrew.cloud/badges/github/cloudposse/terraform-aws-eks-workers/cis_aws)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=cloudposse%2Fterraform-aws-eks-workers&benchmark=CIS+AWS+V1.2) | Center for Internet Security, AWS Compliance |
+| [![CIS AZURE](https://www.bridgecrew.cloud/badges/github/cloudposse/terraform-aws-eks-workers/cis_azure)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=cloudposse%2Fterraform-aws-eks-workers&benchmark=CIS+AZURE+V1.1) | Center for Internet Security, AZURE Compliance |
+| [![PCI-DSS](https://www.bridgecrew.cloud/badges/github/cloudposse/terraform-aws-eks-workers/pci)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=cloudposse%2Fterraform-aws-eks-workers&benchmark=PCI-DSS+V3.2) | Payment Card Industry Data Security Standards Compliance |
+| [![NIST-800-53](https://www.bridgecrew.cloud/badges/github/cloudposse/terraform-aws-eks-workers/nist)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=cloudposse%2Fterraform-aws-eks-workers&benchmark=NIST-800-53) | National Institute of Standards and Technology Compliance |
+| [![ISO27001](https://www.bridgecrew.cloud/badges/github/cloudposse/terraform-aws-eks-workers/iso)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=cloudposse%2Fterraform-aws-eks-workers&benchmark=ISO27001) | Information Security Management System, ISO/IEC 27001 Compliance |
+| [![SOC2](https://www.bridgecrew.cloud/badges/github/cloudposse/terraform-aws-eks-workers/soc2)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=cloudposse%2Fterraform-aws-eks-workers&benchmark=SOC2)| Service Organization Control 2 Compliance |
+| [![CIS GCP](https://www.bridgecrew.cloud/badges/github/cloudposse/terraform-aws-eks-workers/cis_gcp)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=cloudposse%2Fterraform-aws-eks-workers&benchmark=CIS+GCP+V1.1) | Center for Internet Security, GCP Compliance |
+| [![HIPAA](https://www.bridgecrew.cloud/badges/github/cloudposse/terraform-aws-eks-workers/hipaa)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=cloudposse%2Fterraform-aws-eks-workers&benchmark=HIPAA) | Health Insurance Portability and Accountability Compliance |
+
+
+
 ## Usage
 
 
@@ -172,9 +191,8 @@ Available targets:
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.12.26 |
+| terraform | >= 0.13 |
 | aws | >= 2.0 |
-| local | >= 1.3 |
 | template | >= 2.0 |
 
 ## Providers
@@ -206,7 +224,7 @@ Available targets:
 | cluster\_name | The name of the EKS cluster | `string` | n/a | yes |
 | cluster\_security\_group\_id | Security Group ID of the EKS cluster | `string` | n/a | yes |
 | cluster\_security\_group\_ingress\_enabled | Whether to enable the EKS cluster Security Group as ingress to workers Security Group | `bool` | `true` | no |
-| context | Single object for setting entire context at once.<br>See description of individual variables for details.<br>Leave string and numeric variables as `null` to use default value.<br>Individual variable settings (non-null) override settings in context object,<br>except for attributes, tags, and additional\_tag\_map, which are merged. | <pre>object({<br>    enabled             = bool<br>    namespace           = string<br>    environment         = string<br>    stage               = string<br>    name                = string<br>    delimiter           = string<br>    attributes          = list(string)<br>    tags                = map(string)<br>    additional_tag_map  = map(string)<br>    regex_replace_chars = string<br>    label_order         = list(string)<br>    id_length_limit     = number<br>  })</pre> | <pre>{<br>  "additional_tag_map": {},<br>  "attributes": [],<br>  "delimiter": null,<br>  "enabled": true,<br>  "environment": null,<br>  "id_length_limit": null,<br>  "label_order": [],<br>  "name": null,<br>  "namespace": null,<br>  "regex_replace_chars": null,<br>  "stage": null,<br>  "tags": {}<br>}</pre> | no |
+| context | Single object for setting entire context at once.<br>See description of individual variables for details.<br>Leave string and numeric variables as `null` to use default value.<br>Individual variable settings (non-null) override settings in context object,<br>except for attributes, tags, and additional\_tag\_map, which are merged. | `any` | <pre>{<br>  "additional_tag_map": {},<br>  "attributes": [],<br>  "delimiter": null,<br>  "enabled": true,<br>  "environment": null,<br>  "id_length_limit": null,<br>  "label_key_case": null,<br>  "label_order": [],<br>  "label_value_case": null,<br>  "name": null,<br>  "namespace": null,<br>  "regex_replace_chars": null,<br>  "stage": null,<br>  "tags": {}<br>}</pre> | no |
 | cpu\_utilization\_high\_evaluation\_periods | The number of periods over which data is compared to the specified threshold | `number` | `2` | no |
 | cpu\_utilization\_high\_period\_seconds | The period in seconds over which the specified statistic is applied | `number` | `300` | no |
 | cpu\_utilization\_high\_statistic | The statistic to apply to the alarm's associated metric. Either of the following is supported: `SampleCount`, `Average`, `Sum`, `Minimum`, `Maximum` | `string` | `"Average"` | no |
@@ -230,14 +248,16 @@ Available targets:
 | force\_delete | Allows deleting the autoscaling group without waiting for all instances in the pool to terminate. You can force an autoscaling group to delete even if it's in the process of scaling a resource. Normally, Terraform drains all the instances before deleting the group. This bypasses that behavior and potentially leaves resources dangling | `bool` | `false` | no |
 | health\_check\_grace\_period | Time (in seconds) after instance comes into service before checking health | `number` | `300` | no |
 | health\_check\_type | Controls how health checking is done. Valid values are `EC2` or `ELB` | `string` | `"EC2"` | no |
-| id\_length\_limit | Limit `id` to this many characters.<br>Set to `0` for unlimited length.<br>Set to `null` for default, which is `0`.<br>Does not affect `id_full`. | `number` | `null` | no |
+| id\_length\_limit | Limit `id` to this many characters (minimum 6).<br>Set to `0` for unlimited length.<br>Set to `null` for default, which is `0`.<br>Does not affect `id_full`. | `number` | `null` | no |
 | image\_id | EC2 image ID to launch. If not provided, the module will lookup the most recent EKS AMI. See https://docs.aws.amazon.com/eks/latest/userguide/eks-optimized-ami.html for more details on EKS-optimized images | `string` | `""` | no |
 | instance\_initiated\_shutdown\_behavior | Shutdown behavior for the instances. Can be `stop` or `terminate` | `string` | `"terminate"` | no |
 | instance\_market\_options | The market (purchasing) option for the instances | <pre>object({<br>    market_type = string<br>    spot_options = object({<br>      block_duration_minutes         = number<br>      instance_interruption_behavior = string<br>      max_price                      = number<br>      spot_instance_type             = string<br>      valid_until                    = string<br>    })<br>  })</pre> | `null` | no |
 | instance\_type | Instance type to launch | `string` | n/a | yes |
 | key\_name | SSH key name that should be used for the instance | `string` | `""` | no |
 | kubelet\_extra\_args | Extra arguments to pass to kubelet, like "--register-with-taints=dedicated=ci-cd:NoSchedule --node-labels=purpose=ci-worker" | `string` | `""` | no |
+| label\_key\_case | The letter case of label keys (`tag` names) (i.e. `name`, `namespace`, `environment`, `stage`, `attributes`) to use in `tags`.<br>Possible values: `lower`, `title`, `upper`.<br>Default value: `title`. | `string` | `null` | no |
 | label\_order | The naming order of the id output and Name tag.<br>Defaults to ["namespace", "environment", "stage", "name", "attributes"].<br>You can omit any of the 5 elements, but at least one must be present. | `list(string)` | `null` | no |
+| label\_value\_case | The letter case of output label values (also used in `tags` and `id`).<br>Possible values: `lower`, `title`, `upper` and `none` (no transformation).<br>Default value: `lower`. | `string` | `null` | no |
 | load\_balancers | A list of elastic load balancer names to add to the autoscaling group. Only valid for classic load balancers. For ALBs, use `target_group_arns` instead | `list(string)` | `[]` | no |
 | max\_size | The maximum size of the autoscale group | `number` | n/a | yes |
 | metrics\_granularity | The granularity to associate with the metrics to collect. The only valid value is 1Minute | `string` | `"1Minute"` | no |
@@ -394,7 +414,7 @@ In general, PRs are welcome. We follow the typical "fork-and-pull" Git workflow.
 
 ## Copyright
 
-Copyright © 2017-2020 [Cloud Posse, LLC](https://cpco.io/copyright)
+Copyright © 2017-2021 [Cloud Posse, LLC](https://cpco.io/copyright)
 
 
 
